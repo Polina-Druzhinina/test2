@@ -2,5 +2,8 @@
 
 Showing ...
 
-##Author
+## Author
 Polina Druzhinina
+
+## Age
+18
