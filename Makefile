@@ -1,7 +1,13 @@
 .PHONY: create-practice remove-practice
 
 create-practice:
-	mkdir -p $(Name)
+ifdef NAME
+	$(error NAME is not defined)
+endif
+	mkdir -p $(NAME)
 
 remove-practice:
-	rm -rf $(Name)
+ifdef NAME
+	$(error NAME is not defined)
+endif
+	rm -rf $(NAME)
