@@ -1,11 +1,10 @@
 .PHONY: create-practice remove-practice
 
 create-practice:
-ifdef NAME
+ifndef NAME
 	$(error NAME is not defined)
 endif
 	mkdir -p $(NAME)
-	cp PracticeMakefile $(NAME)/Makefile
 
 remove-practice:
 ifdef NAME
