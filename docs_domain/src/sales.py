@@ -1,20 +1,5 @@
 # TODO refactor this module using buisness logic names
 
-"""
-def _row(x):
-    # x is one line from file
-    p = x.strip().split(",")  # split by comma
-    if len(p) != 4:  # if line is bad
-        return None  # return nothing
-
-    n = p[0]  # product name
-    c = p[1]  # product category
-    a = float(p[2])  # price of one item
-    q = int(p[3])  # amount of items
-
-    return {"n": n, "c": c, "a": a, "q": q}  # make dict
-"""
-
 def _parse_record(line:str):
     sale = line.strip().split(",")
     if len(sale) != 4:  # according specs all sales have 4cols
@@ -24,7 +9,9 @@ def _parse_record(line:str):
     category = sale[1] 
     try:
         unit_price = float(sale[2]) 
-        quantity = int(sale[3]) 
+        quantity = int(sale[3])
+        if quantity != sale[3]:
+            return None
     except ValueError:
         return None
 
