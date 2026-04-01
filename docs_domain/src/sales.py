@@ -1,6 +1,6 @@
 # TODO refactor this module using buisness logic names
 
-
+"""
 def _row(x):
     # x is one line from file
     p = x.strip().split(",")  # split by comma
@@ -13,13 +13,25 @@ def _row(x):
     q = int(p[3])  # amount of items
 
     return {"n": n, "c": c, "a": a, "q": q}  # make dict
+"""
 
+def _parse_record(line:str):
+    sale = line.strip().split(",")
+    if len(sale) != 4:  # according specs all sales have 4cols
+        return None 
+
+    product_name = sale[0]  
+    category = sale[1]  
+    unit_price = float(sale[2])  
+    quantity = int(sale[3]) 
+
+    return {"product_name": product_name, "category": category, "unit_price": unit_price, "quantity": quantity}
 
 def read_data(path):
     res = []  # final list
     with open(path, "r", encoding="utf-8") as f:  # open file
         for x in f:  # go over lines
-            r = _row(x)  # convert line to dict
+            r = _parse_record(x)  # convert line to dict
             if r is not None:  # if parsing was ok
                 res.append(r)  # add to result
     return res  # return result
