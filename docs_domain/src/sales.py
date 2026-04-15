@@ -26,6 +26,14 @@ def _parse_record(line:str) -> dict | None:
     return {"product_name": product_name, "category": category, "unit_price": unit_price, "quantity": quantity}
 
 def read_data(path):
+    """Parses one record from sales files:
+
+    Parameters:
+        line - one record about sales `product_nam, category,unit_price,quantity`
+    
+    Returns:
+        Sales information in form dict
+    """
     res = []  # final list
     with open(path, "r", encoding="utf-8") as f:  # open file
         for x in f:  # go over lines
