@@ -14,3 +14,4 @@ This docs describe sales parsing lib
    :caption: Contents:
 
    QUICKSTART
+   HOW_TO_CONTRIBUTE
