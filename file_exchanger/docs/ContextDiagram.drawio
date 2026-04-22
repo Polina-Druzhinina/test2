@@ -4,6 +4,9 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="bcaC3cJ_G4mKgigBlMQI-12" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" value="" vertex="1">
+          <mxGeometry height="140" width="140" x="715" y="45" as="geometry" />
+        </mxCell>
         <mxCell id="VROsJncU9r32iQ_4L87f-4" parent="1" style="rhombus;whiteSpace=wrap;html=1;fontSize=18;fillColor=#ffe6cc;strokeColor=#d79b00;" value="File Transfer Service" vertex="1">
           <mxGeometry height="150" width="160" x="290" y="170" as="geometry" />
         </mxCell>
@@ -29,11 +32,13 @@
             <mxPoint x="560" y="340" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="VROsJncU9r32iQ_4L87f-10" edge="1" parent="1" source="VROsJncU9r32iQ_4L87f-5" style="curved=1;endArrow=none;html=1;rounded=0;entryX=0.192;entryY=0.305;entryDx=0;entryDy=0;exitX=0.41;exitY=0.994;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;entryPerimeter=0;fontSize=18;" target="VROsJncU9r32iQ_4L87f-4" value="">
+        <mxCell id="VROsJncU9r32iQ_4L87f-10" edge="1" parent="1" source="VROsJncU9r32iQ_4L87f-5" style="curved=1;endArrow=none;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.41;exitY=0.994;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;fontSize=18;" target="VROsJncU9r32iQ_4L87f-8" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <Array as="points">
               <mxPoint x="195" y="180" />
-              <mxPoint x="265" y="190" />
+              <mxPoint x="100" y="360" />
+              <mxPoint x="60" y="500" />
+              <mxPoint x="420" y="560" />
             </Array>
             <mxPoint x="190" y="140" as="sourcePoint" />
             <mxPoint x="315" y="208" as="targetPoint" />
@@ -100,14 +105,31 @@
         <mxCell id="bcaC3cJ_G4mKgigBlMQI-4" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 16px;&quot;&gt;&lt;b&gt;Notification request&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="475" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="bcaC3cJ_G4mKgigBlMQI-5" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 16px;&quot;&gt;&lt;b&gt;Send notification&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="bcaC3cJ_G4mKgigBlMQI-5" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 16px;&quot;&gt;&lt;b&gt;FIle&amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-size: 16px;&quot;&gt;&lt;b&gt;avalliable&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="595" y="200" as="geometry" />
         </mxCell>
-        <mxCell id="bcaC3cJ_G4mKgigBlMQI-6" edge="1" parent="1" source="VROsJncU9r32iQ_4L87f-5" style="endArrow=classic;html=1;rounded=0;endFill=1;exitX=0.986;exitY=0.44;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+        <mxCell id="bcaC3cJ_G4mKgigBlMQI-6" edge="1" parent="1" source="VROsJncU9r32iQ_4L87f-5" style="endArrow=classic;html=1;rounded=0;endFill=1;exitX=0.986;exitY=0.44;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.005;entryY=0.418;entryDx=0;entryDy=0;entryPerimeter=0;" target="VROsJncU9r32iQ_4L87f-6" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="340" y="70" as="sourcePoint" />
             <mxPoint x="440" y="67" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="bcaC3cJ_G4mKgigBlMQI-7" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;File&amp;nbsp; &amp;nbsp; &amp;nbsp; recieved&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="20" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="bcaC3cJ_G4mKgigBlMQI-10" edge="1" parent="1" source="VROsJncU9r32iQ_4L87f-6" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=18;edgeStyle=orthogonalEdgeStyle;" target="VROsJncU9r32iQ_4L87f-7" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="75" />
+              <mxPoint x="700" y="520" />
+              <mxPoint x="205" y="520" />
+            </Array>
+            <mxPoint x="665" y="200" as="sourcePoint" />
+            <mxPoint x="540" y="288" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bcaC3cJ_G4mKgigBlMQI-11" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;User downloads file directly from Cloud using WebApp&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="725" y="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
