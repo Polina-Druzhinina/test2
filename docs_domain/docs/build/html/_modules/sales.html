@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sales &#8212; sales 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for sales</h1><div class="highlight"><pre>
+<span></span><span class="c1"># TODO refactor this module using buisness logic names</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_parse_record</span><span class="p">(</span><span class="n">line</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses one record from sales files:</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        line - one record about sales `product_nam, category,unit_price,quantity`</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Sales information in form dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sale</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sale</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">:</span>  <span class="c1"># according specs all sales have 4cols</span>
+        <span class="k">return</span> <span class="kc">None</span> 
+
+    <span class="n">product_name</span> <span class="o">=</span> <span class="n">sale</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="n">category</span> <span class="o">=</span> <span class="n">sale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">unit_price</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sale</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> 
+        <span class="n">quantity</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sale</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">quantity</span> <span class="o">!=</span> <span class="n">sale</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="c1">#according specs quantity is always integer</span>
+            <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;product_name&quot;</span><span class="p">:</span> <span class="n">product_name</span><span class="p">,</span> <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">category</span><span class="p">,</span> <span class="s2">&quot;unit_price&quot;</span><span class="p">:</span> <span class="n">unit_price</span><span class="p">,</span> <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="n">quantity</span><span class="p">}</span>
+
+<div class="viewcode-block" id="read_data">
+<a class="viewcode-back" href="../api/sales.html#sales.read_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_data</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses one record from sales files:</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        line - one record about sales `product_nam, category,unit_price,quantity`</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Sales information in form dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># final list</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># open file</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># go over lines</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">_parse_record</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># convert line to dict</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># if parsing was ok</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>  <span class="c1"># add to result</span>
+    <span class="k">return</span> <span class="n">res</span>  <span class="c1"># return result</span></div>
+
+
+
+<div class="viewcode-block" id="total">
+<a class="viewcode-back" href="../api/sales.html#sales.total">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">total</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># total sum</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>  <span class="c1"># loop all rows</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">]</span>  <span class="c1"># add price * quantity</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">:</span>  <span class="c1"># if discount exists</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-</span> <span class="n">s</span> <span class="o">*</span> <span class="n">d</span> <span class="o">/</span> <span class="mi">100</span>  <span class="c1"># apply discount</span>
+    <span class="k">return</span> <span class="n">s</span>  <span class="c1"># give answer</span></div>
+
+
+
+<div class="viewcode-block" id="find_big">
+<a class="viewcode-back" href="../api/sales.html#sales.find_big">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_big</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># rows that are big enough</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>  <span class="c1"># each row</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">]</span>  <span class="c1"># row money</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">t</span><span class="p">:</span>  <span class="c1"># compare with threshold</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># save row</span>
+    <span class="k">return</span> <span class="n">out</span>  <span class="c1"># done</span></div>
+
+
+
+<div class="viewcode-block" id="by_category">
+<a class="viewcode-back" href="../api/sales.html#sales.by_category">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">by_category</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># category to money</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">:</span>  <span class="c1"># each row</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span>  <span class="c1"># category name</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>  <span class="c1"># create if needed</span>
+            <span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># start from zero</span>
+        <span class="n">m</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span><span class="p">[</span><span class="s2">&quot;q&quot;</span><span class="p">]</span>  <span class="c1"># add row amount</span>
+    <span class="k">return</span> <span class="n">m</span>  <span class="c1"># return mapping</span></div>
+
+
+
+<div class="viewcode-block" id="report">
+<a class="viewcode-back" href="../api/sales.html#sales.report">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># text lines</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Report&quot;</span><span class="p">)</span>  <span class="c1"># title</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;------&quot;</span><span class="p">)</span>  <span class="c1"># separator</span>
+
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">by_category</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># category and amount</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># make line</span>
+
+    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;------&quot;</span><span class="p">)</span>  <span class="c1"># separator again</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total: </span><span class="si">{</span><span class="n">total</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># total sum</span>
+
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>  <span class="c1"># merge lines</span></div>
+
+
+
+<div class="viewcode-block" id="write_report">
+<a class="viewcode-back" href="../api/sales.html#sales.write_report">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_report</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">txt</span><span class="p">):</span>
+    <span class="c1"># TODO better errors</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># open file for writing</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>  <span class="c1"># write text</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">sales</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../QUICKSTART.html">Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HOW_TO_CONTRIBUTE.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">API reference for sales project</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Polina Druzhinina.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
