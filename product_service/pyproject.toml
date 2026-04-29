@@ -1,9 +1,9 @@
 [project]
 name = "product-service"
 version = "0.0.1"
-description = ""
+description = "Application for serving users products"
 authors = [
-    {name = "Herman",email = "dogfish520@gmail.com"}
+    {name = "Polina Druzhinina"}
 ]
 license = "MIT"
 readme = "README.md"
