@@ -33,7 +33,6 @@ PRODUCTS: dict[str, Product] = {
     ),
 }
 
-
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok", "service": "product-service"}
