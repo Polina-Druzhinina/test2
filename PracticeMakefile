@@ -1,17 +1,28 @@
-.PHONY: create-structure install-dep install test-pytest
+.PHONY: create-structure install-dep install test-pytest test remove-structure
 
 create-structure:
-    mkdir -p src tests docs
-    touch src/.gitkeep tests/.gitkeep
-    touch docs/DOMAIN.md README.md .gitignore setup.py requirements.txt
+	mkdir src tests docs 2>nul
+	copy NUL src\.gitkeep >nul
+	copy NUL tests\.gitkeep >nul
+	copy NUL docs\DOMAIN.md >nul
+	copy NUL README.md >nul
+	copy NUL .gitignore >nul
+	copy NUL setup.py >nul
+	copy NUL requirements.txt >nul
 
 install-dep:
-    pip install -r requirements.txt
-    
+	pip install -r requirements.txt
+
 install:
-    pip install -e .
+	pip install -e .
 
 test-pytest:
-    python3 -m pytest
+	python -m pytest
 
 test: install-dep install test-pytest
+
+remove-structure:
+	if exist src rmdir /S /Q src
+	if exist tests rmdir /S /Q tests
+	if exist docs rmdir /S /Q docs
+	del /Q README.md .gitignore setup.py requirements.txt 2>nul

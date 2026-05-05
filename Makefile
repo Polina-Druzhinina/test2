@@ -1,15 +1,14 @@
 .PHONY: create-practice remove-practice
+
 create-practice:
 ifndef NAME
-	$(error NAME is not defiend)
-
+	$(error NAME is not defined)
 endif
-	mkdir -p $(NAME)
-	cp PracticeMakefile $(NAME)/Makefile
+	if not exist "$(NAME)" mkdir "$(NAME)"
+	copy PracticeMakefile "$(NAME)\Makefile"
 
 remove-practice:
 ifndef NAME
-	$(error NAME is not defiend)
-
+	$(error NAME is not defined)
 endif
-	rm -rf $(NAME)
+	if exist "$(NAME)" rmdir /S /Q "$(NAME)"
