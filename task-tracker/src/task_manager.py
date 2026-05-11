@@ -15,3 +15,10 @@ def list_task() -> None:
         status = "ok" if task.completed else " "
         print(f"[{status}] {index}.{task.title}")
 
+def complete_task(index: int) -> None:
+    tasks = load_tasks()
+    if index < 1 or index > len(tasks):
+        print("Invalid task index")
+        return
+    tasks[index-1].completed = True
+    save_tasks(tasks)
