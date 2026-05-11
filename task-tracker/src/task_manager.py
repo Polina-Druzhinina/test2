@@ -9,7 +9,7 @@ def add_task(title:str) -> None:
     tasks.append(Task(title=title))
     save_tasks(tasks)
 
-def list_task() -> None:
+def list_tasks() -> None:
     tasks = load_tasks()
     if not tasks:
         raise TaskNotFoundError("No tasks found")
