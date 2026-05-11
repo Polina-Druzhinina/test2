@@ -1,5 +1,5 @@
-from models import Task
-from storage import load_tasks, save_tasks
+from src.models import Task
+from src.storage import load_tasks, save_tasks
 
 class TaskNotFoundError(Exception):
     pass

@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from models import Task
+from src.models import Task
 
 DATA_FILE = Path("data/tasks.json")
 
