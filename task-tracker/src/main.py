@@ -1,9 +1,5 @@
-from src.task_manager import (
-    add_task,
-    complete_task,
-    list_tasks,
-    TaskNotFoundError
-)
+from src.task_manager import add_task, complete_task, list_tasks, TaskNotFoundError
+
 
 def main() -> None:
     while True:
@@ -27,11 +23,12 @@ def main() -> None:
                 print("Goodbye")
                 break
             else:
-                print("Invalid option") 
+                print("Invalid option")
         except TaskNotFoundError as error:
             print(error)
         except ValueError:
             print("Please enter a valid number")
+
 
 if __name__ == "__main__":
     main()
