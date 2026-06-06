@@ -1,5 +1,7 @@
 # Task Tracker — автоматизация Python-проекта через Make
 
+**Репозиторий:** https://github.com/Polina-Druzhinina/test2/tree/feature/testpypi/task-tracker
+
 ## Введение
 
 В рамках данной работы был разработан консольный Python-проект Task Tracker и организован автоматизированный процесс разработки с использованием Makefile.
